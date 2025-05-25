@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aviator Predictor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #c30000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    header {
+      background-color: #c30000;
+      color: white;
+      width: 100%;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+    }
+
+    .circle {
+      border: 4px solid #c30000;
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin: 20px auto;
+    }
+
+    button {
+      background: #c30000;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+
+    input {
+      padding: 10px;
+      border: 2px solid #c30000;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 80px;
+    }
+
+    #mainApp {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Aviator Predictor</header>
+
+  <div id="loginForm">
+    <input type="text" id="keyInput" placeholder="Enter your key here!!" />
+    <br>
+    <button onclick="checkKey()">Login</button>
+  </div>
+
+  <div id="mainApp">
+    <h1>Predicted Multiplier</h1>
+    <div class="circle" id="multiplier">1.00x</div>
+    <button id="startBtn" onclick="startMultiplier()">Start</button>
+  </div>
+
+  <footer>Version 2.0</footer>
+
+  <script>
+    const validKey = "V0171209K"; // Ganti dengan key yang kamu inginkan
+    let isRunning = false;
+    let interval;
+
+    function checkKey() {
+      const input = document.getElementById("keyInput").value;
+      if (input === validKey) {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("mainApp").style.display = "flex";
+      } else {
+        alert("Key salah!!");
+      }
+    }
+
+    function startMultiplier() {
+      if (isRunning) return;
+
+      isRunning = true;
+      document.getElementById("startBtn").disabled = true;
+      clearInterval(interval);
+
+      let x = 1.00;
+      const el = document.getElementById('multiplier');
+      const chance = Math.random();
+      let crashAt;
+
+      if (chance < 0.7) {
+        crashAt = Math.random() * (8.00 - 1.00) + 1.00;
+      } else {
+        crashAt = Math.random() * (50.00 - 8.01) + 8.01;
+      }
+
+      interval = setInterval(() => {
+        x += 0.05;
+        el.innerText = x.toFixed(2) + 'x';
+        if (x >= crashAt) {
+          clearInterval(interval);
+          isRunning = false;
+          document.getElementById("startBtn").disabled = false;
+        }
+      }, 30);
+    }
+  </script>
+
+</body>
+</html>
