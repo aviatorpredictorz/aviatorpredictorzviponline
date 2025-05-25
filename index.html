@@ -88,6 +88,7 @@
     <input type="text" id="keyInput" placeholder="Enter your key here!!" />
     <br>
     <button onclick="checkKey()">Login</button>
+    <button onclick="buyKey()" style="margin-top: 10px; background-color: green;">Buy Key</button>
   </div>
 
   <div id="mainApp">
@@ -99,9 +100,24 @@
   <footer>Version 2.0</footer>
 
   <script>
-    const validKey = "V0171209K"; // Ganti dengan key yang kamu inginkan
-    let isRunning = false;
-    let interval;
+  const validKey = "V0171209K";
+
+  function checkKey() {
+    const input = document.getElementById("keyInput").value;
+    if (input === validKey) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    } else {
+      alert("Key salah!");
+    }
+  }
+
+  function buyKey() {
+    const adminPhone = "6288224274374"; // Ganti dengan nomor WhatsApp admin kamu
+    const message = encodeURIComponent("Halo admin, saya ingin membeli key untuk Aviator Predictor.");
+    window.open(`https://wa.me/${adminPhone}?text=${message}`, "_blank");
+  }
+</script>
 
     function checkKey() {
       const input = document.getElementById("keyInput").value;
