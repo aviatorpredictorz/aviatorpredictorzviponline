@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aviator Predictor</title>
+  <title>Spaceman Predictor</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div id="loginScreen">
-  <h2>Enter Access Key</h2>
-  <input type="password" id="keyInput" placeholder="Enter your acces key"/>
+  <h2>Enter Your Access Key</h2>
+  <input type="password" id="keyInput" placeholder="Enter your key"/>
   <button onclick="checkKey()">Login</button>
   <br/><br/>
   <button onclick="buyKey()">Buy Key</button>
 </div>
 
 <div id="mainApp" style="display:none;">
-  <header>Aviator Predictor</header>
+  <header>Spaceman Predictor</header>
 
   <div>
-    <img src="https://files.catbox.moe/35xhsz.jpg" alt="Plane Icon" class="plane-icon" />
-    <h1>Aviator Predictor</h1>
+    <img src="https://files.catbox.moe/y2ks5w.png" alt="Plane Icon" class="plane-icon" />
+    <h1>Spaceman Predictor</h1>
     <div class="circle" id="multiplier">1.00x</div>
     <button id="startBtn" onclick="startMultiplier()">Start</button>
   </div>
@@ -33,7 +33,7 @@
 </div>
 
 <script>
-  const validKeys = ["V0171209K", "abc123", "aviatorkey"]; // bisa ditambah sesuai keinginan
+  const validKeys = ["V0171209K", "abc123", "spacemankey"]; // bisa ditambah sesuai keinginan
   let running = false;
 
   function checkKey() {
@@ -42,14 +42,14 @@
       document.getElementById("loginScreen").style.display = "none";
       document.getElementById("mainApp").style.display = "block";
     } else {
-      alert("Invalid key. Please Buy Key!!.");
+      alert("Invalid key. Please buy key.");
     }
   }
 
   function buyKey() {
     const message = encodeURIComponent("Halo Admin, saya ingin beli key Aviator Predictor.");
     const number = "6288224274374"; // ganti dengan nomor admin kamu
-    <a href="https://wa.me/6288224274374?text=Halo%20Admin,%20saya%20ingin%20beli..." target="_blank">Buy Key</a>
+    window.open(`https://wa.me/${number}?text=${message}`, "_blank");
   }
 
   function generateWeightedMultiplier() {
